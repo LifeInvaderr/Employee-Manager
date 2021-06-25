@@ -3,7 +3,6 @@ const inquirer = require('inquirer');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
-const Employee = require('./lib/Employee');
 
 var employees = [];
 
@@ -44,7 +43,7 @@ function addIntern() {
                 if (nameInput) {
                     return true;
                 } else {
-                    console.log('Please enter your name!');
+                    console.log('Please enter a name!');
                     return false;
                 }
             }
@@ -81,10 +80,7 @@ function addIntern() {
             }
         }
     ]).then((answer) => {
-
         var intern = new Intern(answer.name, answer.id, answer.email, answer.school)
-        console.log(intern)
-
         employees.push(intern)
         console.log(employees)
         mainMenu()
@@ -94,10 +90,112 @@ function addIntern() {
 
 
 function addManager() {
-    console.log("very nice")
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the Managers name?',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a name!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'What is this Managers ID?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is this Managers email?',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log('Please enter an email!')
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'office',
+            message: 'what is this Managers office number?',
+            validate: officeInput => {
+                if (officeInput) {
+                    return true;
+                } else {
+                    console.log('Please enter an email!')
+                    return false;
+                }
+            }
+        }
+    ]).then((answer) => {
+        var manager = new Manager(answer.name, answer.id, answer.email, answer.office)
+        employees.push(manager)
+        console.log(employees)
+        mainMenu()
+    })
 }
+
+
 function addEngineer() {
-    console.log("Very very nice")
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the Engineers name?',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter a name!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'What is this Managers ID?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is this Managers email?',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log('Please enter an email!')
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'office',
+            message: 'what is this Managers office number?',
+            validate: officeInput => {
+                if (officeInput) {
+                    return true;
+                } else {
+                    console.log('Please enter an office number!')
+                    return false;
+                }
+            }
+        }
+    ]).then((answer) => {
+        var manager = new Manager(answer.name, answer.id, answer.email, answer.office)
+        employees.push(manager)
+        console.log(employees)
+        mainMenu()
+    })
 }
 
 
