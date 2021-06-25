@@ -32,7 +32,7 @@ function mainMenu() {
     });
 }
 
-// Add intern
+// Intern block
 function addIntern() {
     inquirer.prompt([
         {
@@ -87,8 +87,7 @@ function addIntern() {
     })
 }
 
-
-
+// Manager Block
 function addManager() {
     inquirer.prompt([
         {
@@ -143,7 +142,7 @@ function addManager() {
     })
 }
 
-
+// Engineer block
 function addEngineer() {
     inquirer.prompt([
         {
@@ -162,12 +161,12 @@ function addEngineer() {
         {
             type: 'input',
             name: 'id',
-            message: 'What is this Managers ID?',
+            message: 'What is this Engineers ID?',
         },
         {
             type: 'input',
             name: 'email',
-            message: 'What is this Managers email?',
+            message: 'What is this Engineers email?',
             validate: emailInput => {
                 if (emailInput) {
                     return true;
@@ -179,24 +178,27 @@ function addEngineer() {
         },
         {
             type: 'input',
-            name: 'office',
-            message: 'what is this Managers office number?',
+            name: 'github',
+            message: 'what is this Engineers github account?',
             validate: officeInput => {
                 if (officeInput) {
                     return true;
                 } else {
-                    console.log('Please enter an office number!')
+                    console.log('Please enter an github account!')
                     return false;
                 }
             }
         }
     ]).then((answer) => {
-        var manager = new Manager(answer.name, answer.id, answer.email, answer.office)
-        employees.push(manager)
+        var engineer = new Engineer(answer.name, answer.id, answer.email, answer.github)
+        employees.push(engineer)
         console.log(employees)
         mainMenu()
     })
 }
+
+
+
 
 
 
