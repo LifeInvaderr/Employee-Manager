@@ -1,10 +1,13 @@
 const inquirer = require('inquirer');
 
+// grabs all models
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 
+// to capture employees added to the management
 var employees = [];
+
 
 // Main Menu
 function mainMenu() {
@@ -12,7 +15,7 @@ function mainMenu() {
         name: "mainMenu",
         type: "list",
         message: "What employee would you like to add?",
-        choices: ["Add an Intern", "Add a Manager", "Add an Engineer"]
+        choices: ["Add an Intern", "Add a Manager", "Add an Engineer", "Finished"]
     }).then((answer) => {
         switch (answer.mainMenu) {
             case "Add an Intern":
@@ -27,6 +30,11 @@ function mainMenu() {
         switch (answer.mainMenu) {
             case "Add an Engineer":
                 addEngineer()
+                break;
+        }
+        switch (answer.mainMenu) {
+            case "Finished":
+                finished()
                 break;
         };
     });
@@ -80,7 +88,9 @@ function addIntern() {
             }
         }
     ]).then((answer) => {
+        // uses constructor function to add as json
         var intern = new Intern(answer.name, answer.id, answer.email, answer.school)
+        // then is pushed to the employee array for printout
         employees.push(intern)
         console.log(employees)
         mainMenu()
@@ -197,9 +207,17 @@ function addEngineer() {
     })
 }
 
+// Finished block to add to html
+function finished() {
+
+console.log(employees)
 
 
 
 
+}
 
+
+
+// to start the menu
 mainMenu()
