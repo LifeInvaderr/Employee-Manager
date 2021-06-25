@@ -1,12 +1,20 @@
 const inquirer = require('inquirer');
 
+const { writeFile, copyFile } = require('./utils/generate');
+
+
+
 // grabs all models
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 
 // to capture employees added to the management
-var employees = [];
+
+
+var employeeIntern = [];
+var employeeManager = [];
+var employeeEngineer = [];
 
 
 // Main Menu
@@ -91,8 +99,7 @@ function addIntern() {
         // uses constructor function to add as json
         var intern = new Intern(answer.name, answer.id, answer.email, answer.school)
         // then is pushed to the employee array for printout
-        employees.push(intern)
-        console.log(employees)
+        employeeIntern.push(intern)
         mainMenu()
     })
 }
@@ -146,8 +153,7 @@ function addManager() {
         }
     ]).then((answer) => {
         var manager = new Manager(answer.name, answer.id, answer.email, answer.office)
-        employees.push(manager)
-        console.log(employees)
+        employeeManager.push(manager)
         mainMenu()
     })
 }
@@ -201,8 +207,7 @@ function addEngineer() {
         }
     ]).then((answer) => {
         var engineer = new Engineer(answer.name, answer.id, answer.email, answer.github)
-        employees.push(engineer)
-        console.log(employees)
+        employeeEngineer.push(engineer)
         mainMenu()
     })
 }
@@ -210,14 +215,12 @@ function addEngineer() {
 // Finished block to add to html
 function finished() {
 
-console.log(employees)
 
-
-
+    employeeIntern.forEach(Element => console.log(Element))
+    employeeManager.forEach(Element => console.log(Element))
+    employeeEngineer.forEach(Element => console.log(Element))
 
 }
-
-
-
 // to start the menu
 mainMenu()
+

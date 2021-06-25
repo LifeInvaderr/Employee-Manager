@@ -1,0 +1,26 @@
+header {
+    padding: 60px;
+    text-align: center;
+    background: salmon;
+    color: white;
+  }
+
+.title {
+    color: white;
+}
+
+img {
+    width: 100px;
+    align-self: center;
+}
+  
+main {
+    justify-content: center;
+    display: flex;
+    padding: 0% 4%;
+}
+
+
+.card {
+    width: 300px;
+}
