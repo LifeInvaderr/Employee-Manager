@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
-const generatePage = require('./src/template')
+// const generatePage = require('./src/template')
 const { writeFile, copyFile } = require('./src/template');
+const { internTemplating, managerTemplating, engineerTemplating } = require('./src/template')
 
 
 
@@ -12,7 +13,7 @@ const template = require('./src/template');
 
 // to capture employees added to the management
 
-
+var allEmployees = []
 var employeeIntern = [];
 var employeeManager = [];
 var employeeEngineer = [];
@@ -54,7 +55,7 @@ function addIntern() {
     inquirer.prompt([
         {
             type: 'input',
-            name: 'name',
+            name: 'intern',
             message: 'What is the interns name?',
             validate: nameInput => {
                 if (nameInput) {
@@ -98,9 +99,11 @@ function addIntern() {
         }
     ]).then((answer) => {
         // uses constructor function to add as json
-        var intern = new Intern(answer.name, answer.id, answer.email, answer.school)
+        var intern = new Intern(answer.intern, answer.id, answer.email, answer.school)
         // then is pushed to the employee array for printout
         employeeIntern.push(intern)
+        allEmployees.push(employeeIntern)
+
         mainMenu()
     })
 }
@@ -110,7 +113,7 @@ function addManager() {
     inquirer.prompt([
         {
             type: 'input',
-            name: 'name',
+            name: 'manager',
             message: 'What is the Managers name?',
             validate: nameInput => {
                 if (nameInput) {
@@ -153,8 +156,10 @@ function addManager() {
             }
         }
     ]).then((answer) => {
-        var manager = new Manager(answer.name, answer.id, answer.email, answer.office)
+        var manager = new Manager(answer.manager, answer.id, answer.email, answer.office)
         employeeManager.push(manager)
+        allEmployees.push(employeeManager)
+
         mainMenu()
     })
 }
@@ -164,7 +169,7 @@ function addEngineer() {
     inquirer.prompt([
         {
             type: 'input',
-            name: 'name',
+            name: 'engineer',
             message: 'What is the Engineers name?',
             validate: nameInput => {
                 if (nameInput) {
@@ -207,20 +212,20 @@ function addEngineer() {
             }
         }
     ]).then((answer) => {
-        var engineer = new Engineer(answer.name, answer.id, answer.email, answer.github)
+        var engineer = new Engineer(answer.engineer, answer.id, answer.email, answer.github)
+        console.log(engineer)
         employeeEngineer.push(engineer)
+        allEmployees.push(employeeEngineer)
+
         mainMenu()
     })
 }
 
 // Finished block to add to html
 function finished() {
-
-    generatePage(employeeIntern)
-    
-    employeeIntern.forEach(Element => console.log(Element))
-    employeeManager.forEach(Element => console.log(Element))
-    employeeEngineer.forEach(Element => console.log(Element))
+    internTemplating(employeeIntern)
+    managerTemplating(employeeManager)
+    engineerTemplating(employeeEngineer)
 }
 // to start the menu
 mainMenu()
