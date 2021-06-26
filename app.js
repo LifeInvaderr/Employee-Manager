@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
-
-const { writeFile, copyFile } = require('./utils/generate');
+const generatePage = require('./src/template')
+const { writeFile, copyFile } = require('./src/template');
 
 
 
@@ -8,6 +8,7 @@ const { writeFile, copyFile } = require('./utils/generate');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
+const template = require('./src/template');
 
 // to capture employees added to the management
 
@@ -215,11 +216,11 @@ function addEngineer() {
 // Finished block to add to html
 function finished() {
 
-
+    generatePage(employeeIntern)
+    
     employeeIntern.forEach(Element => console.log(Element))
     employeeManager.forEach(Element => console.log(Element))
     employeeEngineer.forEach(Element => console.log(Element))
-
 }
 // to start the menu
 mainMenu()
