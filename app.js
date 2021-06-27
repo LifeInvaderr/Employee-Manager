@@ -1,19 +1,14 @@
+// functions and needed packages
 const inquirer = require('inquirer');
-// const generatePage = require('./src/template')
-const { writeFile, copyFile } = require('./src/template');
-const { internTemplating, managerTemplating, engineerTemplating } = require('./src/template')
-
-
+const { internTemplating, managerTemplating, engineerTemplating, htmlTemplate} = require('./src/template')
+const { writeFile, copyFile } = require('./utils/generate');
 
 // grabs all models
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
-const template = require('./src/template');
 
 // to capture employees added to the management
-
-var allEmployees = []
 var employeeIntern = [];
 var employeeManager = [];
 var employeeEngineer = [];
@@ -98,11 +93,10 @@ function addIntern() {
             }
         }
     ]).then((answer) => {
-        // uses constructor function to add as json
+        // uses constructor function to add as an object
         var intern = new Intern(answer.intern, answer.id, answer.email, answer.school)
         // then is pushed to the employee array for printout
         employeeIntern.push(intern)
-        allEmployees.push(employeeIntern)
 
         mainMenu()
     })
@@ -158,7 +152,6 @@ function addManager() {
     ]).then((answer) => {
         var manager = new Manager(answer.manager, answer.id, answer.email, answer.office)
         employeeManager.push(manager)
-        allEmployees.push(employeeManager)
 
         mainMenu()
     })
@@ -213,9 +206,7 @@ function addEngineer() {
         }
     ]).then((answer) => {
         var engineer = new Engineer(answer.engineer, answer.id, answer.email, answer.github)
-        console.log(engineer)
         employeeEngineer.push(engineer)
-        allEmployees.push(employeeEngineer)
 
         mainMenu()
     })
@@ -223,9 +214,15 @@ function addEngineer() {
 
 // Finished block to add to html
 function finished() {
-    internTemplating(employeeIntern)
-    managerTemplating(employeeManager)
-    engineerTemplating(employeeEngineer)
+    // Uses templating engine to get string 
+    const allInterns = internTemplating(employeeIntern)
+    const allManagers = managerTemplating(employeeManager)
+    const allEngineers = engineerTemplating(employeeEngineer)
+
+    // Uses templating engine to write page
+    const allEmployees = (allInterns + allManagers + allEngineers)
+    const formatedData = htmlTemplate(allEmployees)
+    writeFile(formatedData)
 }
 // to start the menu
 mainMenu()
