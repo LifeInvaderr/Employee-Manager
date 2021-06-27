@@ -18,9 +18,13 @@ main {
     justify-content: center;
     display: flex;
     padding: 0% 4%;
+    flex-wrap: wrap;
 }
 
+.isPadding {
+    padding: 10px;
+}
 
 .card {
-    width: 300px;
+    min-width: 300px;
 }

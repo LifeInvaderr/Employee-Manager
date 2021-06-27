@@ -6,6 +6,7 @@ const internTemplating = internData => {
 
     internData.forEach(element => {
         allInterns = allInterns + `
+        <div class="isPadding">
         <div class="card">
         <article class="panel is-link">
             <div class="panel-heading">
@@ -33,6 +34,7 @@ const internTemplating = internData => {
             </a>
         </article>
     </div>    
+    </div>
         `
     });
     return allInterns;
@@ -46,6 +48,7 @@ const managerTemplating = managerData => {
 
     managerData.forEach(element => {
         allManagers = allManagers + `
+        <div class="isPadding">
         <div class="card">
         <article class="panel is-link">
             <div class="panel-heading">
@@ -73,6 +76,7 @@ const managerTemplating = managerData => {
             </a>
         </article>
     </div>    
+    </div>
         `
     });
     return allManagers
@@ -86,6 +90,7 @@ const engineerTemplating = engineerData => {
 
     engineerData.forEach(element => {
         allEngineers = allEngineers + `
+        <div class="isPadding">
         <div class="card">
         <article class="panel is-link">
             <div class="panel-heading">
@@ -113,6 +118,7 @@ const engineerTemplating = engineerData => {
             </a>
         </article>
     </div>    
+    </div>
         `
     });
     return allEngineers
