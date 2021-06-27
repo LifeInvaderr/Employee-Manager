@@ -222,8 +222,9 @@ function finished() {
     // Uses templating engine to write page
     const allEmployees = (allInterns + allManagers + allEngineers)
     const formatedData = htmlTemplate(allEmployees)
-    writeFile(formatedData)
+    writeFile(formatedData);
+    copyFile();
+    console.log("Printed, please look into the /dist directory for files");
 }
 // to start the menu
 mainMenu()
-

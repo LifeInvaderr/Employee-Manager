@@ -1,0 +1,30 @@
+header {
+    padding: 60px;
+    text-align: center;
+    background: #ff3860;
+    color: white;
+  }
+
+.title {
+    color: white;
+}
+
+img {
+    width: 100px;
+    align-self: center;
+}
+  
+main {
+    justify-content: center;
+    display: flex;
+    padding: 0% 4%;
+    flex-wrap: wrap;
+}
+
+.isPadding {
+    padding: 10px;
+}
+
+.card {
+    min-width: 300px;
+}
